@@ -11,7 +11,13 @@
   </head>
 
   <body>
+
+    <%= render 'layouts/nav' %>
+
     <%= toastr_flash %>
     <%= yield %>
+
+    <%= render 'layouts/footer' %>
+
   </body>
 </html>
