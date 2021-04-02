@@ -14,23 +14,24 @@
         <% @products.each do |product| %>
 
           <div class="col-md-4">
-            <div class="mt-2 mb-3">
-              <h5><strong><%= product.title %></strong></h5>
-            </div>
-
             <div class="card mb-4 box-shadow">
-              <%= product_image(product, 347, 225) %>
 
-                <p class="card-text p-3">
-                  <%= product.description %>
-                </p>
-                <div class="d-flex justify-content-between align-items-center p-3">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Details</button>
-                    <button type="button" class="btn btn-sm btn-outline-success">Buy now</button>
-                  </div>
-                  <p>$<%= product.price %></p>
+              <%= product_image(product, 348, 225) %>
+
+              <div class="card-text p-3">
+                <div class="mt-2 mb-3">
+                  <h5 class="text-muted"><strong><%= product.title %></strong></h5>
                 </div>
+                <%= product.description %>
+              </div>
+
+              <div class="d-flex justify-content-between align-items-center p-3">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Details</button>
+                  <button type="button" class="btn btn-sm btn-outline-success">Buy now</button>
+                </div>
+                <p>$<%= product.price %></p>
+              </div>
 
             </div>
           </div>
@@ -39,5 +40,4 @@
       </div>
     </div>
   </div>
-
 </main>
