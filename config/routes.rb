@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
-  get 'accounts/profile'
   devise_for :accounts
   root to: 'public#home'
+
+  get '/profile/:id' => 'accounts#profile', as: :profile
+
+  resources :products
 
 end
