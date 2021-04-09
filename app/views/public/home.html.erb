@@ -7,6 +7,38 @@
     </div>
   </section>
 
+  <div class="container">
+    <div class="row">
+      <div class="col">
+
+        <%= form_tag(search_path, method: 'get', remote: true) do %>
+          <div class="input-group mt-5 mb-5">
+
+            <div class="col-8" style="padding:0">
+              <%= text_field_tag :search, '', class: 'form-control', placeholder: 'Search', onkeydown: 'clickSubmit();' %>
+            </div>
+
+            <div class="col-4" style="padding:0">
+              <%= select_tag 'filter', options_for_select([
+                'Select Filter',
+                'Nike',
+                'Adidas',
+                'Puma',
+                'Asics'
+              ]), class: 'custom-select', onchange: 'clickSubmit()' %>
+              
+              <%= submit_tag 'Search', class: 'btn btn-dark', id: 'search_submit', style: 'display:none' %>
+            </div>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+    <div id="products-container">
+      <%= render 'public/products' %>
+    </div>
+  </div>
+
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row">
@@ -41,3 +73,9 @@
     </div>
   </div>
 </main>
+
+<script type="text/javascript">
+  function clickSubmit() {
+    $('search_submit').trigger('click');
+  }
+</script>

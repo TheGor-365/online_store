@@ -27,9 +27,12 @@
           </div>
 
           <div class="form-group">
-            <%= f.label :avatar %>
-            <%= f.file_field :avatar, class: 'form-control' %>
-            <%= f.hidden_field :avatar_cache %>
+            <%= f.label 'Profile avatar' %>
+            <div class="custom-file">
+              <%= f.label :avatar, class: 'custom-file-label' %>
+              <%= f.file_field :avatar, type: 'file', class: 'custom-file-input' %>
+              <%= f.hidden_field :avatar_cache %>
+            </div>
           </div>
 
           <div class="form-group">

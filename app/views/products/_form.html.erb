@@ -1,4 +1,10 @@
 <%= form_with(model: @product, local: true) do |form| %>
+
+  <div class="form-group">
+    <%= form.label :category %>
+    <%= form.select(:category_id, options_from_collection_for_select(Category.all, :id, :heading, (@product.category.id if @product.category.present?)), {}, {class: 'form-control'}) %>
+  </div>
+
   <div class="form-group">
     <%= form.label :title %>
     <%= form.text_field :title, class: 'form-control' %>
@@ -15,14 +21,17 @@
   </div>
 
   <div class="form-group">
-    <%= form.check_box :is_best_offer, class: 'mr-2' %>
-    <%= form.label :is_best_offer %>
+    <%= form.label 'Product Image' %>
+    <div class="custom-file">
+      <%= form.label 'Choose file', class: 'custom-file-label' %>
+      <%= form.file_field :image, type: 'file', class: 'custom-file-input' %>
+      <%= form.hidden_field :image_cache %>
+    </div>
   </div>
 
   <div class="form-group">
-    <%= form.label :image %>
-    <%= form.file_field :image, class: 'form-control' %>
-    <%= form.hidden_field :image_cache %>
+    <%= form.check_box :is_best_offer, class: 'mr-2' %>
+    <%= form.label :is_best_offer %>
   </div>
 
   <div class="form-group">

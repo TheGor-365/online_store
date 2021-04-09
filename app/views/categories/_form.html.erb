@@ -1,0 +1,33 @@
+<%= form_with(model: category, local: true) do |form| %>
+
+  <% if category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+      <ul>
+        <% category.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-gorup">
+    <%= form.label :heading %>
+    <%= form.text_field :heading, class: 'form-control' %>
+  </div>
+
+  <div class="form-gorup">
+    <%= form.label :body %>
+    <%= form.text_area :body, class: 'form-control' %>
+  </div>
+
+  <div class="form-gorup">
+    <%= form.check_box :display, class: 'mr-2' %>
+    <%= form.label :display %>
+  </div>
+
+  <div class="form-gorup">
+    <%= form.submit class: 'btn btn-sm btn-primary' %>
+  </div>
+<% end %>

@@ -1,0 +1,12 @@
+<div class="container mt-5 mb-5">
+  <div class="row mb-5">
+    <div class="col-8">
+      <h5>New Category</h5>
+      <div class="card p-4">
+
+        <%= render 'form', category: @category, class: 'text-decoration-none text-dark' %>
+      </div>
+    </div>
+  </div>
+  <%= link_to 'Back', categories_path, class: 'text-decoration-none text-dark' %>
+</div>

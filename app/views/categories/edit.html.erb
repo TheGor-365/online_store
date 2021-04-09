@@ -1,0 +1,16 @@
+<div class="container mt-5 mb-5">
+  <h5>Editing Category</h5>
+
+  <div class="row">
+    <div class="col-6">
+      <div class="card p-4">
+        <%= render 'form', category: @category %>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <%= link_to link_to 'Show cat', @category, class: 'text-decoration-none text-dark' %><br>
+      <%= link_to 'Back to cats', categories_path, class: 'text-decoration-none text-dark' %>
+    </div>
+  </div>
+</div>

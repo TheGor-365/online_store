@@ -1,0 +1,47 @@
+<div class="row">
+
+  <% @cats.each do |cat| %>
+
+    <% if cat.products.present? %>
+      <%= image_tag(cat.products.first.image.url, class: 'img-fluid rounded') %>
+    <% else %>
+      <div class="col-12 mt-5 mb-3">
+        <h6>No products in this category</h6>
+      </div>
+    <% end %>
+
+    <div class="col-12 mt-3 mb-3 text-muted">
+      <h1 style="text-align:center;"><%= cat.heading %></h1>
+      <hr class="mb-5">
+    </div>
+
+    <% @products.each do |product| %>
+
+      <% if product.category == cat %>
+        <div class="col-md-4">
+          <div class="card mb-4 box-shadow">
+
+            <%= product_image(product, 348, 225) %>
+
+            <div class="card-text p-3">
+              <div class="mt-2 mb-3">
+                <h5 class="text-muted"><strong><%= product.title %></strong></h5>
+              </div>
+              <%= product.description %>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center p-3">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary">Details</button>
+                <button type="button" class="btn btn-sm btn-outline-success">Buy now</button>
+              </div>
+              <p>$<%= product.price %></p>
+            </div>
+
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+
+</div>
