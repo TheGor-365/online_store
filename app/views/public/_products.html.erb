@@ -1,9 +1,8 @@
 <div class="row">
-
   <% @cats.each do |cat| %>
 
     <% if cat.products.present? %>
-      <%= image_tag(cat.products.first.image.url, class: 'img-fluid rounded') %>
+      <%= image_tag(cat.products.first.image.url, width: '100%', class: 'img-fluid rounded') %>
     <% else %>
       <div class="col-12 mt-5 mb-3">
         <h6>No products in this category</h6>
@@ -19,23 +18,74 @@
 
       <% if product.category == cat %>
         <div class="col-md-4">
-          <div class="card mb-4 box-shadow">
+          <div class="card mb-5 pb-3 box-shadow">
 
             <%= product_image(product, 348, 225) %>
 
             <div class="card-text p-3">
               <div class="mt-2 mb-3">
-                <h5 class="text-muted"><strong><%= product.title %></strong></h5>
+                <small class="float-left text-muted">Model</small>
+                <h6 class="text-muted float-right">
+                  <strong>
+                    <%= product.title %>
+                  </strong>
+                </h6>
               </div>
-              <%= product.description %>
+            </div>
+
+            <div class="pr-3 pl-3">
+              <small class="float-left text-muted">Price</small>
+              <p class="float-right text-muted">
+                <strong>
+                  $<%= product.price %>
+                </strong>
+              </p>
+            </div>
+
+            <div class="pr-3 pl-3">
+              <div class="accordion" id="accordionExample">
+
+                <button
+                  class="btn btn-link btn-block text-left text-muted text-decoration-none text-dark pl-0 pt-0 pb-0"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#<%= product.title %>-description"
+                  aria-expanded="true"
+                  aria-controls="collapseOne">
+                  <small>
+                    View  Description
+                  </small>
+                </button>
+
+                <div
+                  id="<%= product.title %>-description"
+                  class="collapse"
+                  aria-labelledby="headingOne"
+                  data-parent="#accordionExample">
+                  <div class="card-body bg-light mt-2">
+                    <small class="text-muted">
+                      <%= product.description %>
+                    </small>
+                  </div>
+                </div>
+
+              </div>
             </div>
 
             <div class="d-flex justify-content-between align-items-center p-3">
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Details</button>
-                <button type="button" class="btn btn-sm btn-outline-success">Buy now</button>
-              </div>
-              <p>$<%= product.price %></p>
+              <%= form_with model: @order_item, url: order_item do |f| %>
+
+                <%= f.hidden_field :product_id, value: product.id %>
+                <div class="input-group input-group-sm">
+                  <small class="mr-3 pt-1 text-muted">Count</small>
+                  <%= f.number_field :quantity, value: 1, min: 1, class: 'form-control', id: 'product-count-field' %>
+                  <div class="input-group-append">
+                    <%= f.submit "Add To Cart", class: "btn btn-sm btn-outline-primary" %>
+                    <%= button_to "Buy now", product, class: "btn btn-sm btn-outline-success" %>
+                    <%= button_to "Details", product, method: :get, class: "btn btn-sm btn-outline-secondary" %>
+                  </div>
+                </div>
+              <% end %>
             </div>
 
           </div>
@@ -43,5 +93,4 @@
       <% end %>
     <% end %>
   <% end %>
-
 </div>

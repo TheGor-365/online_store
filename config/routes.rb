@@ -8,8 +8,10 @@ Rails.application.routes.draw do
   resources :products
   resources :order_items
 
-  get 'cart',         to: 'cart#show'
+  get 'public',       to: 'public#index'
   get 'search',       to: 'public#search'
-  get 'profile/:id', to: 'accounts#profile', as: :profile
+  get 'cart',         to: 'cart#show'
+
+  get 'profile/:id',  to: 'accounts#profile', as: :profile
 
 end

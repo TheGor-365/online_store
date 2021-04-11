@@ -1,81 +1,90 @@
-<main role="main">
+<section class="jumbotron text-center bg-white">
+  <div class="container">
+    <h1 class="jumbotron-heading">Sneakers</h1>
+    <p class="lead text-muted">Our brands</p>
+  </div>
+</section>
 
-  <section class="jumbotron text-center bg-white">
-    <div class="container">
-      <h1 class="jumbotron-heading">Sneakers</h1>
-      <p class="lead text-muted">Our brands</p>
-    </div>
-  </section>
-
+<div class="album py-5">
   <div class="container">
     <div class="row">
-      <div class="col">
 
-        <%= form_tag(search_path, method: 'get', remote: true) do %>
-          <div class="input-group mt-5 mb-5">
+      <% @products.each do |product| %>
 
-            <div class="col-8" style="padding:0">
-              <%= text_field_tag :search, '', class: 'form-control', placeholder: 'Search', onkeydown: 'clickSubmit();' %>
+        <div class="col-md-4">
+          <div class="card mb-5 pb-3 box-shadow">
+
+            <%= product_image(product, 348, 225) %>
+
+            <div class="card-text p-3">
+              <div class="mt-2 mb-3">
+                <small class="float-left text-muted">Model</small>
+                <h6 class="text-muted float-right">
+                  <strong>
+                    <%= product.title %>
+                  </strong>
+                </h6>
+              </div>
             </div>
 
-            <div class="col-4" style="padding:0">
-              <%= select_tag 'filter', options_for_select([
-                'Select Filter',
-                'Nike',
-                'Adidas',
-                'Puma',
-                'Asics'
-              ]), class: 'custom-select', onchange: 'clickSubmit()' %>
-              
-              <%= submit_tag 'Search', class: 'btn btn-dark', id: 'search_submit', style: 'display:none' %>
+            <div class="pr-3 pl-3">
+              <small class="float-left text-muted">Price</small>
+              <p class="float-right text-muted">
+                <strong>
+                  $<%= product.price %>
+                </strong>
+              </p>
             </div>
+
+            <div class="pr-3 pl-3">
+              <div class="accordion" id="accordionExample">
+
+                <button
+                  class="btn btn-link btn-block text-left text-muted text-decoration-none text-dark pl-0 pt-0 pb-0"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#<%= product.title %>-description"
+                  aria-expanded="true"
+                  aria-controls="collapseOne">
+                  <small>
+                    View  Description
+                  </small>
+                </button>
+
+                <div
+                  id="<%= product.title %>-description"
+                  class="collapse"
+                  aria-labelledby="headingOne"
+                  data-parent="#accordionExample">
+                  <div class="card-body bg-light mt-2">
+                    <small class="text-muted">
+                      <%= product.description %>
+                    </small>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center p-3">
+              <%= form_with model: @order_item do |f| %>
+
+                <%= f.hidden_field :product_id, value: product.id %>
+                <div class="input-group input-group-sm">
+                  <small class="mr-3 pt-1 text-muted">Count</small>
+                  <%= f.number_field :quantity, value: 1, min: 1, class: 'form-control', id: 'product-count-field' %>
+                  <div class="input-group-append">
+                    <%= f.submit "Add To Cart", class: "btn btn-sm btn-outline-primary" %>
+                    <%= button_to "Buy now", product, class: "btn btn-sm btn-outline-success" %>
+                    <%= button_to "Details", product, method: :get, class: "btn btn-sm btn-outline-secondary" %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+
           </div>
-        <% end %>
-
-      </div>
-    </div>
-    <div id="products-container">
-      <%= render 'public/products' %>
+        </div>
+      <% end %>
     </div>
   </div>
-
-  <div class="album py-5 bg-light">
-    <div class="container">
-      <div class="row">
-
-        <% @products.each do |product| %>
-
-          <div class="col-md-4">
-            <div class="card mb-4 box-shadow">
-
-              <%= product_image(product, 348, 225) %>
-
-              <div class="card-text p-3">
-                <div class="mt-2 mb-3">
-                  <h5 class="text-muted"><strong><%= product.title %></strong></h5>
-                </div>
-                <%= product.description %>
-              </div>
-
-              <div class="d-flex justify-content-between align-items-center p-3">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Details</button>
-                  <button type="button" class="btn btn-sm btn-outline-success">Buy now</button>
-                </div>
-                <p>$<%= product.price %></p>
-              </div>
-
-            </div>
-          </div>
-        <% end %>
-
-      </div>
-    </div>
-  </div>
-</main>
-
-<script type="text/javascript">
-  function clickSubmit() {
-    $('search_submit').trigger('click');
-  }
-</script>
+</div>

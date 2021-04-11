@@ -4,7 +4,11 @@ class PublicController < ApplicationController
 
   def home
     @products = Product.all
-    #@order = current_order
+    @order_items = current_order.order_items.new
+  end
+
+  def index
+    @products = Product.all
     @order_items = current_order.order_items.new
   end
 
