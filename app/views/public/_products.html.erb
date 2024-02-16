@@ -1,9 +1,8 @@
 <div class="row">
-
   <% @cats.each do |cat| %>
 
     <% if cat.products.present? %>
-      <%= image_tag(cat.products.first.image.url, class: 'img-fluid rounded') %>
+      <%= image_tag(cat.products.first.image.url, width: '100%', class: 'img-fluid rounded') %>
     <% else %>
       <div class="col-12 mt-5 mb-3">
         <h6>No products in this category</h6>
@@ -46,7 +45,10 @@
             <div class="pr-3 pl-3">
               <div class="accordion" id="accordionExample">
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> cb88a97adb27259d83927b37ee6fd2cbb280bb07
                 <button
                   class="btn btn-link btn-block text-left text-muted text-decoration-none text-dark pl-0 pt-0 pb-0"
                   type="button"
@@ -75,7 +77,11 @@
             </div>
 
             <div class="d-flex justify-content-between align-items-center p-3">
+<<<<<<< HEAD
               <%= form_with model: @order_item do |f| %>
+=======
+              <%= form_with model: @order_item, url: order_item do |f| %>
+>>>>>>> cb88a97adb27259d83927b37ee6fd2cbb280bb07
 
                 <%= f.hidden_field :product_id, value: product.id %>
                 <div class="input-group input-group-sm">
@@ -84,7 +90,11 @@
                   <div class="input-group-append">
                     <%= f.submit "Add To Cart", class: "btn btn-sm btn-outline-primary" %>
                     <%= button_to "Buy now", product, class: "btn btn-sm btn-outline-success" %>
+<<<<<<< HEAD
                     <%= button_to "Details", product, class: "btn btn-sm btn-outline-secondary" %>
+=======
+                    <%= button_to "Details", product, method: :get, class: "btn btn-sm btn-outline-secondary" %>
+>>>>>>> cb88a97adb27259d83927b37ee6fd2cbb280bb07
                   </div>
                 </div>
               <% end %>
@@ -95,5 +105,4 @@
       <% end %>
     <% end %>
   <% end %>
-
 </div>

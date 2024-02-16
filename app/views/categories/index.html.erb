@@ -16,9 +16,9 @@
         <tbody>
           <% @categories.each do |category| %>
             <tr>
-              <td><%= category.heading %></td>
-              <td><%= category.body %></td>
-              <td><%= category.display %></td>
+              <td><small><%= category.heading %></small></td>
+              <td><small><%= category.body %></small></td>
+              <td><small><%= category.display %></small></td>
               <td><%= link_to 'Show', category, class: 'text-decoration-none text-dark' %></td>
               <td><%= link_to 'Edit', edit_category_path(category), class: 'text-decoration-none text-dark' %></td>
               <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-decoration-none text-dark' %></td>

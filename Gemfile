@@ -16,7 +16,11 @@ gem 'mini_magick'
 gem 'carrierwave'
 gem 'cancancan'
 gem 'simple_form'
+<<<<<<< HEAD
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+=======
+
+>>>>>>> cb88a97adb27259d83927b37ee6fd2cbb280bb07
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

@@ -1,34 +1,35 @@
 <div class="container mt-5 mb-5">
   <h5>Products list</h5>
-  <div class="row mb-5">
+  <div class="row mb-5 mt-4">
     <div class="col-12">
-      <div class="card p-4">
-        <table class="table table-bordered table-dark">
-          <thead>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">Brand</th>
+            <th scope="col">Title</th>
+            <th scope="col">Price</th>
+            <th scope="col">Is b/o</th>
+            <th scope="col">Image</th>
+            <th scope="col">Controlls</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @products.each do |product| %>
             <tr>
-              <th scope="col">id</th>
-              <th scope="col">Brand</th>
-              <th scope="col">Title</th>
-              <th scope="col">Price</th>
-              <th scope="col">Is b/o</th>
-              <th scope="col">Image</th>
+              <th scope="row"><%= product.id %></th>
+              <td><small><%= product.category.heading if product.category.present? %></small></td>
+              <td><small><%= product.title %></small></td>
+              <td><small><%= product.price %></small></td>
+              <td><small><%= product.is_best_offer %></small></td>
+              <td><small><%= product_image(product, 60, 45) %></small></td>
+              <td><%= link_to 'Show', product_path(product), class: 'text-decoration-none text-dark' %> | <%= link_to 'Edit', edit_product_path(product), class: 'text-decoration-none text-dark' %> | <%= link_to 'Destroy', product_path(product), method: :delete, class: 'text-decoration-none text-dark' %></td>
             </tr>
-          </thead>
-          <tbody>
-            <% @products.each do |product| %>
-              <tr>
-                <th scope="row"><%= product.id %></th>
-                <td><small><%= product.category.heading if product.category.present? %></small></td>
-                <td><small><%= product.title %></small></td>
-                <td><small><%= product.price %></small></td>
-                <td><small><%= product.is_best_offer %></small></td>
-                <td><small><%= product_image(product, 60, 45) %></small></td>
-                <td><%= link_to 'Show', product_path(product), class: 'text-decoration-none text-light' %> | <%= link_to 'Edit', edit_product_path(product), class: 'text-decoration-none text-light' %> | <%= link_to 'Destroy', product_path(product), method: :delete, class: 'text-decoration-none text-light' %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
+          <% end %>
+        </tbody>
+      </table>
+
     </div>
   </div>
   <%= link_to 'Create New Product', new_product_path, class: 'text-decoration-none text-dark' %>
