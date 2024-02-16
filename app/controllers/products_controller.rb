@@ -1,7 +1,6 @@
 class ProductsController < ApplicationController
 
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  #before_action :set_cats
 
   def index
     @products = Product.all
@@ -45,10 +44,6 @@ class ProductsController < ApplicationController
   def set_product
     @product = Product.find(params[:id])
   end
-
-  # def set_cats
-  #   @cats = Category.all.where(display: true)
-  # end
 
   def product_params
     params.require(:product).permit(

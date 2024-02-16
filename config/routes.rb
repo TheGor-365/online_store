@@ -10,6 +10,6 @@ Rails.application.routes.draw do
 
   get 'cart',         to: 'cart#show'
   get 'search',       to: 'public#search'
-  get 'profile/:id', to: 'accounts#profile', as: :profile
+  get 'profile/:id',  to: 'accounts#profile', as: :profile
 
 end
